@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a routerLink="content" class="navbar-brand">Who is Right?</a>
+    </div>
+
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item" *ngIf="authService.isAuthenticated()"><a class="nav-link" routerLink="protected">Protected</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="">Neki Link</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="">Neki Link</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="">Neki Link</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <a (click)="getUser()">Uhvati USER-A</a>
+        <ng-template [ngIf]="!authService.isAuthenticated()">
+        <li><a routerLink="account/singup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a routerLink="account/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </ng-template>
+        <ng-template [ngIf]="authService.isAuthenticated()">
+          <li><a style="cursor: pointer;"(click)="onLogout()" ><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
+        </ng-template>
+      </ul>
+    </div>
+  </div>
+</nav>
